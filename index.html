@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>jveu - Portfolio</title>
+<meta name="description" content="portfolio site by jveu.">
+<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #dcdcda;
+    --bar: #1c3838;
+    --text: #171717;
+    --text-dim: #6b6b6b;
+    --rule: #c7c7c5;
+    --header-h: 56px;
+    --colhead-h: 36px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  ::selection { background: #171717; color: #dcdcda; }
+
+  .topbar {
+    height: 6px;
+    background: var(--bar);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+
+  .wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  header {
+    height: var(--header-h);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 15px;
+    position: sticky;
+    top: 6px;
+    z-index: 30;
+  }
+
+  .brand-nav { display: flex; gap: 24px; }
+  header .center { text-align: center; }
+  header .right { text-align: right; }
+
+  nav a, header a { color: var(--text); transition: opacity 0.15s ease; }
+  nav a:hover, header a:hover { opacity: 0.55; }
+
+  .hero { padding: 90px 0 60px; }
+
+  .stack-heading {
+    font-family: 'Alex Brush', cursive;
+    font-size: 84px;
+    line-height: 1.1;
+    font-weight: 400;
+    margin: 0 0 30px;
+    letter-spacing: 0.01em;
+    color: var(--text);
+  }
+
+  .hero p {
+    max-width: 54ch;
+    color: #3a3a3a;
+    font-size: 15px;
+    margin: 0;
+  }
+
+  .count-line {
+    margin-top: 10px !important;
+    font-size: 12px !important;
+    color: var(--text-dim) !important;
+  }
+
+  .search-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .search-row label {
+    font-size: 12px;
+    color: var(--text-dim);
+  }
+
+  .search-row input {
+    flex: 1;
+    max-width: 320px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--text-dim);
+    padding: 4px 2px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text);
+    outline: none;
+  }
+
+  .search-row input::placeholder { color: var(--text-dim); }
+
+  .search-row input:focus { border-bottom-color: var(--text); }
+
+  .search-row .result-count {
+    font-size: 12px;
+    color: var(--text-dim);
+    margin-left: auto;
+  }
+
+  .no-results {
+    padding: 24px 0;
+    color: var(--text-dim);
+    font-size: 14px;
+  }
+
+  .col-heads {
+    height: var(--colhead-h);
+    display: grid;
+    grid-template-columns: 90px 1fr 140px;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-dim);
+    position: sticky;
+    top: calc(50vh - (var(--colhead-h) / 2));
+    z-index: 20;
+    background: transparent;
+  }
+  .col-heads span:last-child { text-align: right; }
+
+  .row {
+    display: grid;
+    grid-template-columns: 90px 1fr 140px;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--text);
+  }
+
+  .row-id {
+    color: var(--text-dim);
+    font-size: 14px;
+    display: inline-block;
+    will-change: transform;
+  }
+
+  .row-title {
+    font-size: 15px;
+    display: inline-block;
+    transition: color 0.15s ease;
+    will-change: transform;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .row-title { transform: none !important; }
+  }
+
+  .row:hover .row-title,
+  .row:focus-visible .row-title {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .row-field {
+    font-size: 13px;
+    color: var(--text-dim);
+    text-align: right;
+  }
+
+  .outro {
+    padding: 48px 0;
+    border-top: 1px solid var(--rule);
+    margin-top: 8px;
+    color: #3a3a3a;
+    font-size: 14px;
+    max-width: 58ch;
+    background: var(--bg);
+    position: relative;
+    z-index: 1;
+  }
+
+  .outro a { text-decoration: underline; text-underline-offset: 2px; }
+
+  footer {
+    padding: 24px 0 56px;
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    color: var(--text-dim);
+    font-size: 13px;
+    background: var(--bg);
+    position: relative;
+    z-index: 1;
+  }
+
+  footer a { transition: opacity 0.15s ease; }
+  footer a:hover { opacity: 0.6; }
+
+  a:focus-visible { outline: 1px solid var(--text); outline-offset: 2px; }
+
+  @media (max-width: 640px) {
+    .col-heads { display: none; }
+    .row { grid-template-columns: 50px 1fr; }
+    .row-field { display: none; }
+    .stack-heading { font-size: 34px; }
+    header { justify-content: space-between; }
+    .hero { padding: 60px 0 44px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar"></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="brand-nav">
+      <a href="https://github.com/jveu" target="_blank" rel="noopener">About ↗</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1 class="stack-heading">
+      Jveu's Home
+    </h1>
+    <p>Small tools and experiments, listed as they're built.</p>
+    <p class="count-line"><span id="count">(0)</span> tools</p>
+  </section>
+
+  <div class="search-row">
+    <label for="search">Search</label>
+    <input type="text" id="search" placeholder="Filter by title or field…" autocomplete="off">
+    <span class="result-count" id="result-count"></span>
+  </div>
+
+  <div class="col-heads">
+    <span>id</span>
+    <span>title</span>
+    <span>field</span>
+  </div>
+
+  <div id="list"></div>
+  <div class="no-results" id="no-results" style="display:none;">No tools match "<span id="no-results-term"></span>".</div>
+
+  <div class="outro">
+    <p>Source for these is on <a href="https://github.com/jveu" target="_blank" rel="noopener">GitHub</a>.</p>
+  </div>
+
+  <footer id="contact">
+    <span>© jveu</span>
+    <a href="mailto:jveuofficialmail@gmail.com">jveuofficialmail@gmail.com</a>
+    <a href="https://github.com/jveu" target="_blank" rel="noopener">github.com/jveu</a>
+  </footer>
+
+</div>
+
+<script>
+  // ---------------------------------------------------------------
+  // To add a project: add one object to this array, in the shape
+  // { title: "...", field: "...", url: "https://..." }
+  // The id (S-001, S-002...) and the count in the heading are
+  // generated automatically — you never need to renumber anything.
+  // ---------------------------------------------------------------
+  const projects = [
+    { title: "Discord Backup Bot",        field: "Python", url: "https://github.com/jveu/DiscordBackupBot" },
+    { title: "Advanced Server Health Bot",     field: "Python",      url: "https://github.com/jveu/AdvancedDiscordServerHealthBotV2" },
+    { title: "Discord Bot Status & Latency",  field: "WebGL",      url: "https://github.com/jveu/discord-bot-status-dashboard-python" },
+    { title: "Cursor Trail Blend",       field: "CSS",        url: "#" },
+    { title: "Grid Warp Interaction",    field: "JavaScript", url: "#" },
+    { title: "Voice Waveform Visualizer",field: "JavaScript", url: "#" },
+    { title: "Ripple Distortion Shader", field: "WebGL",      url: "#" },
+    { title: "Kinetic Type Scramble",    field: "JavaScript", url: "#" },
+    { title: "Drag Sort Gallery",        field: "JavaScript", url: "#" },
+    { title: "Ambient Cloth Sim",        field: "WebGL",      url: "#" },
+    { title: "Split Screen Reveal",      field: "CSS",        url: "#" },
+    { title: "Magnetic Button Hover",    field: "JavaScript", url: "#" },
+    { title: "Camera Feed ASCII",        field: "JavaScript", url: "#" },
+    { title: "Procedural Color Field",   field: "WebGL",      url: "#" },
+    { title: "Scroll Linked Timeline",   field: "JavaScript", url: "#" }
+  ];
+
+  const list = document.getElementById('list');
+  const count = document.getElementById('count');
+  const colHeads = document.querySelector('.col-heads');
+  const searchInput = document.getElementById('search');
+  const resultCount = document.getElementById('result-count');
+  const noResults = document.getElementById('no-results');
+  const noResultsTerm = document.getElementById('no-results-term');
+
+  function render() {
+    const term = searchInput.value.trim().toLowerCase();
+
+    // Keep each project's id tied to its original position in the
+    // array (not its position in the filtered results), so ids stay
+    // stable no matter what's currently being searched for.
+    const withIds = projects.map((p, i) => ({
+      ...p,
+      id: 'S-' + String(i + 1).padStart(3, '0')
+    }));
+
+    const visible = term
+      ? withIds.filter(p =>
+          p.title.toLowerCase().includes(term) ||
+          p.field.toLowerCase().includes(term) ||
+          p.id.toLowerCase().includes(term)
+        )
+      : withIds;
+
+    list.innerHTML = '';
+    visible.forEach(p => {
+      const row = document.createElement('a');
+      row.className = 'row';
+      row.href = p.url;
+      row.target = '_blank';
+      row.rel = 'noopener';
+      row.innerHTML =
+        '<span class="row-id">' + p.id + '</span>' +
+        '<span class="row-title">' + p.title + '</span>' +
+        '<span class="row-field">' + p.field + '</span>';
+      list.appendChild(row);
+    });
+
+    count.textContent = '(' + withIds.length + ')';
+    resultCount.textContent = term ? visible.length + ' / ' + withIds.length : '';
+    noResults.style.display = term && visible.length === 0 ? 'block' : 'none';
+    noResultsTerm.textContent = searchInput.value.trim();
+
+    setupProximityPush();
+  }
+
+  searchInput.addEventListener('input', render);
+
+  // ---------------------------------------------------------------
+  // The "id / title / field" header sticks at the vertical middle of
+  // the screen once you scroll to it. As each row passes through that
+  // middle line, its id + title move together, pushed out to the
+  // side — peaking right as they're under the line, easing back once
+  // clear. The field column stays put on the right.
+  // ---------------------------------------------------------------
+  function setupProximityPush() {
+    const rows = Array.prototype.slice.call(document.querySelectorAll('.row'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || rows.length === 0) return;
+
+    const RANGE = 130;   // px window above/below the line where the push applies
+    const MAX_PUSH = 48; // px max horizontal shift at the peak
+
+    let ticking = false;
+
+    function update() {
+      const lineY = colHeads.getBoundingClientRect().bottom;
+      rows.forEach(function (row) {
+        const rect = row.getBoundingClientRect();
+        const rowCenter = rect.top + rect.height / 2;
+        const dist = rowCenter - lineY;
+        let push = 0;
+        if (Math.abs(dist) < RANGE) {
+          push = MAX_PUSH * (1 - Math.abs(dist) / RANGE);
+        }
+        const transform = push > 0.5 ? 'translateX(' + push.toFixed(1) + 'px)' : '';
+        const id = row.querySelector('.row-id');
+        const title = row.querySelector('.row-title');
+        if (id) id.style.transform = transform;
+        if (title) title.style.transform = transform;
+      });
+      ticking = false;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  }
+
+  render();
+</script>
+
+</body>
+</html>
