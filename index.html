@@ -1,407 +1,680 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>jveu - Portfolio</title>
-<meta name="description" content="portfolio site by jveu.">
-<link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg: #dcdcda;
-    --bar: #1c3838;
-    --text: #171717;
-    --text-dim: #6b6b6b;
-    --rule: #c7c7c5;
-    --header-h: 56px;
-    --colhead-h: 36px;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  * { box-sizing: border-box; }
+    <title>YOUR STORE</title>
 
-  html { scroll-behavior: smooth; }
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
+        html {
+            scroll-behavior: smooth;
+        }
 
-  a { color: inherit; text-decoration: none; }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0a0a0a;
+            color: #ffffff;
+        }
 
-  ::selection { background: #171717; color: #dcdcda; }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-  .topbar {
-    height: 6px;
-    background: var(--bar);
-    position: sticky;
-    top: 0;
-    z-index: 40;
-  }
+        /* NAVBAR */
 
-  .wrap {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
+        nav {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6%;
+            border-bottom: 1px solid #222;
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
 
-  header {
-    height: var(--header-h);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 15px;
-    position: sticky;
-    top: 6px;
-    z-index: 30;
-  }
+        .logo {
+            font-size: 22px;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
 
-  .brand-nav { display: flex; gap: 24px; }
-  header .center { text-align: center; }
-  header .right { text-align: right; }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+            color: #aaa;
+        }
 
-  nav a, header a { color: var(--text); transition: opacity 0.15s ease; }
-  nav a:hover, header a:hover { opacity: 0.55; }
+        .nav-links a:hover {
+            color: white;
+        }
 
-  .hero { padding: 90px 0 60px; }
+        .cart {
+            border: 1px solid #333;
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+        }
 
-  .stack-heading {
-    font-family: 'Alex Brush', cursive;
-    font-size: 84px;
-    line-height: 1.1;
-    font-weight: 400;
-    margin: 0 0 30px;
-    letter-spacing: 0.01em;
-    color: var(--text);
-  }
+        /* HERO */
 
-  .hero p {
-    max-width: 54ch;
-    color: #3a3a3a;
-    font-size: 15px;
-    margin: 0;
-  }
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 80px 20px;
+            background:
+                radial-gradient(circle at center, #222 0%, #0a0a0a 55%);
+        }
 
-  .count-line {
-    margin-top: 10px !important;
-    font-size: 12px !important;
-    color: var(--text-dim) !important;
-  }
+        .hero-content {
+            max-width: 850px;
+        }
 
-  .search-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--rule);
-  }
+        .tag {
+            display: inline-block;
+            border: 1px solid #333;
+            padding: 8px 14px;
+            border-radius: 50px;
+            color: #aaa;
+            font-size: 12px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
 
-  .search-row label {
-    font-size: 12px;
-    color: var(--text-dim);
-  }
+        .hero h1 {
+            font-size: clamp(50px, 10vw, 120px);
+            line-height: 0.9;
+            letter-spacing: -7px;
+            margin-bottom: 30px;
+        }
 
-  .search-row input {
-    flex: 1;
-    max-width: 320px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--text-dim);
-    padding: 4px 2px;
-    font-size: 14px;
-    font-family: inherit;
-    color: var(--text);
-    outline: none;
-  }
+        .hero p {
+            color: #999;
+            max-width: 500px;
+            margin: auto;
+            line-height: 1.7;
+            font-size: 16px;
+        }
 
-  .search-row input::placeholder { color: var(--text-dim); }
+        .hero-button {
+            display: inline-block;
+            margin-top: 35px;
+            background: white;
+            color: black;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
 
-  .search-row input:focus { border-bottom-color: var(--text); }
+        .hero-button:hover {
+            transform: translateY(-3px);
+        }
 
-  .search-row .result-count {
-    font-size: 12px;
-    color: var(--text-dim);
-    margin-left: auto;
-  }
+        /* STORE */
 
-  .no-results {
-    padding: 24px 0;
-    color: var(--text-dim);
-    font-size: 14px;
-  }
+        .store {
+            padding: 100px 6%;
+            max-width: 1400px;
+            margin: auto;
+        }
 
-  .col-heads {
-    height: var(--colhead-h);
-    display: grid;
-    grid-template-columns: 90px 1fr 140px;
-    align-items: center;
-    font-size: 12px;
-    color: var(--text-dim);
-    position: sticky;
-    top: calc(50vh - (var(--colhead-h) / 2));
-    z-index: 20;
-    background: transparent;
-  }
-  .col-heads span:last-child { text-align: right; }
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 40px;
+        }
 
-  .row {
-    display: grid;
-    grid-template-columns: 90px 1fr 140px;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid var(--rule);
-    color: var(--text);
-  }
+        .section-heading h2 {
+            font-size: 42px;
+            letter-spacing: -2px;
+        }
 
-  .row-id {
-    color: var(--text-dim);
-    font-size: 14px;
-    display: inline-block;
-    will-change: transform;
-  }
+        .section-heading p {
+            color: #777;
+        }
 
-  .row-title {
-    font-size: 15px;
-    display: inline-block;
-    transition: color 0.15s ease;
-    will-change: transform;
-  }
+        /* CATEGORIES */
 
-  @media (prefers-reduced-motion: reduce) {
-    .row-title { transform: none !important; }
-  }
+        .categories {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
 
-  .row:hover .row-title,
-  .row:focus-visible .row-title {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
+        .category {
+            padding: 10px 18px;
+            border: 1px solid #292929;
+            border-radius: 50px;
+            color: #999;
+            font-size: 13px;
+            cursor: pointer;
+        }
 
-  .row-field {
-    font-size: 13px;
-    color: var(--text-dim);
-    text-align: right;
-  }
+        .category:hover,
+        .category.active {
+            background: white;
+            color: black;
+        }
 
-  .outro {
-    padding: 48px 0;
-    border-top: 1px solid var(--rule);
-    margin-top: 8px;
-    color: #3a3a3a;
-    font-size: 14px;
-    max-width: 58ch;
-    background: var(--bg);
-    position: relative;
-    z-index: 1;
-  }
+        /* PRODUCTS */
 
-  .outro a { text-decoration: underline; text-underline-offset: 2px; }
+        .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
 
-  footer {
-    padding: 24px 0 56px;
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    flex-wrap: wrap;
-    color: var(--text-dim);
-    font-size: 13px;
-    background: var(--bg);
-    position: relative;
-    z-index: 1;
-  }
+        .product {
+            background: #111;
+            border: 1px solid #222;
+            overflow: hidden;
+            transition: 0.25s;
+        }
 
-  footer a { transition: opacity 0.15s ease; }
-  footer a:hover { opacity: 0.6; }
+        .product:hover {
+            transform: translateY(-5px);
+            border-color: #444;
+        }
 
-  a:focus-visible { outline: 1px solid var(--text); outline-offset: 2px; }
+        .product-image {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #181818;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
 
-  @media (max-width: 640px) {
-    .col-heads { display: none; }
-    .row { grid-template-columns: 50px 1fr; }
-    .row-field { display: none; }
-    .stack-heading { font-size: 34px; }
-    header { justify-content: space-between; }
-    .hero { padding: 60px 0 44px; }
-  }
-</style>
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+
+        .product:hover img {
+            transform: scale(1.04);
+        }
+
+        .placeholder {
+            color: #555;
+            font-size: 13px;
+        }
+
+        .product-info {
+            padding: 18px;
+        }
+
+        .product-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .product-description {
+            color: #777;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .product-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .price {
+            font-weight: bold;
+        }
+
+        .buy-button {
+            background: white;
+            color: black;
+            border: none;
+            padding: 9px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .buy-button:hover {
+            background: #ddd;
+        }
+
+        /* ABOUT */
+
+        .about {
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+            padding: 100px 6%;
+            text-align: center;
+        }
+
+        .about h2 {
+            font-size: 50px;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            max-width: 600px;
+            margin: auto;
+            color: #888;
+            line-height: 1.8;
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 40px 6%;
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 900px) {
+            .products {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .hero {
+                min-height: 60vh;
+            }
+
+            .hero h1 {
+                letter-spacing: -4px;
+            }
+
+            .store {
+                padding: 70px 20px;
+            }
+
+            .section-heading {
+                display: block;
+            }
+
+            .section-heading p {
+                margin-top: 10px;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .about {
+                padding: 70px 20px;
+            }
+
+            .about h2 {
+                font-size: 40px;
+            }
+
+            footer {
+                padding: 30px 20px;
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
-<div class="topbar"></div>
+    <!-- NAVIGATION -->
 
-<div class="wrap">
+    <nav>
+        <a href="#" class="logo">YOUR STORE.</a>
 
-  <header>
-    <div class="brand-nav">
-      <a href="https://github.com/jveu" target="_blank" rel="noopener">About ↗</a>
-    </div>
-  </header>
+        <div class="nav-links">
+            <a href="#shop">Shop</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
 
-  <section class="hero">
-    <h1 class="stack-heading">
-      Jveu's Home
-    </h1>
-    <p>Small tools and experiments, listed as they're built.</p>
-    <p class="count-line"><span id="count">(0)</span> tools</p>
-  </section>
+        <a href="#shop" class="cart">
+            Shop →
+        </a>
+    </nav>
 
-  <div class="search-row">
-    <label for="search">Search</label>
-    <input type="text" id="search" placeholder="Filter by title or field…" autocomplete="off">
-    <span class="result-count" id="result-count"></span>
-  </div>
 
-  <div class="col-heads">
-    <span>id</span>
-    <span>title</span>
-    <span>field</span>
-  </div>
+    <!-- HERO -->
 
-  <div id="list"></div>
-  <div class="no-results" id="no-results" style="display:none;">No tools match "<span id="no-results-term"></span>".</div>
+    <section class="hero">
 
-  <div class="outro">
-    <p>Source for these is on <a href="https://github.com/jveu" target="_blank" rel="noopener">GitHub</a>.</p>
-  </div>
+        <div class="hero-content">
 
-  <footer id="contact">
-    <span>© jveu</span>
-    <a href="mailto:jveuofficialmail@gmail.com">jveuofficialmail@gmail.com</a>
-    <a href="https://github.com/jveu" target="_blank" rel="noopener">github.com/jveu</a>
-  </footer>
+            <div class="tag">Independent Store</div>
 
-</div>
+            <h1>
+                YOUR<br>
+                STORE.
+            </h1>
 
-<script>
-  // ---------------------------------------------------------------
-  // To add a project: add one object to this array, in the shape
-  // { title: "...", field: "...", url: "https://..." }
-  // The id (S-001, S-002...) and the count in the heading are
-  // generated automatically — you never need to renumber anything.
-  // ---------------------------------------------------------------
-  const projects = [
-    { title: "Discord Backup Bot",        field: "Python", url: "https://github.com/jveu/DiscordBackupBot" },
-    { title: "Advanced Server Health Bot",     field: "Python",      url: "https://github.com/jveu/AdvancedDiscordServerHealthBotV2" },
-    { title: "Discord Bot Status & Latency",  field: "WebGL",      url: "https://github.com/jveu/discord-bot-status-dashboard-python" },
-    { title: "Coming Soon",       field: "CSS",        url: "#" },
-    { title: "Coming Soon",    field: "JavaScript", url: "#" },
-    { title: "Coming Soon",field: "JavaScript", url: "#" },
-    { title: "Coming Soon", field: "WebGL",      url: "#" },
-    { title: "Coming Soon",    field: "JavaScript", url: "#" },
-    { title: "Coming Soon",        field: "JavaScript", url: "#" },
-    { title: "Coming Soon",        field: "WebGL",      url: "#" },
-    { title: "Coming Soon",      field: "CSS",        url: "#" },
-    { title: "Coming Soon",    field: "JavaScript", url: "#" },
-    { title: "Coming Soon",        field: "JavaScript", url: "#" },
-    { title: "Coming Soon",   field: "WebGL",      url: "#" },
-    { title: "Coming Soon",   field: "JavaScript", url: "#" }
-  ];
+            <p>
+                Unique products. Simple design.
+                Everything you need, all in one place.
+            </p>
 
-  const list = document.getElementById('list');
-  const count = document.getElementById('count');
-  const colHeads = document.querySelector('.col-heads');
-  const searchInput = document.getElementById('search');
-  const resultCount = document.getElementById('result-count');
-  const noResults = document.getElementById('no-results');
-  const noResultsTerm = document.getElementById('no-results-term');
+            <a href="#shop" class="hero-button">
+                Browse Products →
+            </a>
 
-  function render() {
-    const term = searchInput.value.trim().toLowerCase();
+        </div>
 
-    // Keep each project's id tied to its original position in the
-    // array (not its position in the filtered results), so ids stay
-    // stable no matter what's currently being searched for.
-    const withIds = projects.map((p, i) => ({
-      ...p,
-      id: 'S-' + String(i + 1).padStart(3, '0')
-    }));
+    </section>
 
-    const visible = term
-      ? withIds.filter(p =>
-          p.title.toLowerCase().includes(term) ||
-          p.field.toLowerCase().includes(term) ||
-          p.id.toLowerCase().includes(term)
-        )
-      : withIds;
 
-    list.innerHTML = '';
-    visible.forEach(p => {
-      const row = document.createElement('a');
-      row.className = 'row';
-      row.href = p.url;
-      row.target = '_blank';
-      row.rel = 'noopener';
-      row.innerHTML =
-        '<span class="row-id">' + p.id + '</span>' +
-        '<span class="row-title">' + p.title + '</span>' +
-        '<span class="row-field">' + p.field + '</span>';
-      list.appendChild(row);
-    });
+    <!-- SHOP -->
 
-    count.textContent = '(' + withIds.length + ')';
-    resultCount.textContent = term ? visible.length + ' / ' + withIds.length : '';
-    noResults.style.display = term && visible.length === 0 ? 'block' : 'none';
-    noResultsTerm.textContent = searchInput.value.trim();
+    <section class="store" id="shop">
 
-    setupProximityPush();
-  }
+        <div class="section-heading">
 
-  searchInput.addEventListener('input', render);
+            <div>
+                <h2>Shop</h2>
+                <p>Browse our latest products.</p>
+            </div>
 
-  // ---------------------------------------------------------------
-  // The "id / title / field" header sticks at the vertical middle of
-  // the screen once you scroll to it. As each row passes through that
-  // middle line, its id + title move together, pushed out to the
-  // side — peaking right as they're under the line, easing back once
-  // clear. The field column stays put on the right.
-  // ---------------------------------------------------------------
-  function setupProximityPush() {
-    const rows = Array.prototype.slice.call(document.querySelectorAll('.row'));
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion || rows.length === 0) return;
+        </div>
 
-    const RANGE = 130;   // px window above/below the line where the push applies
-    const MAX_PUSH = 48; // px max horizontal shift at the peak
 
-    let ticking = false;
+        <!-- CATEGORIES -->
 
-    function update() {
-      const lineY = colHeads.getBoundingClientRect().bottom;
-      rows.forEach(function (row) {
-        const rect = row.getBoundingClientRect();
-        const rowCenter = rect.top + rect.height / 2;
-        const dist = rowCenter - lineY;
-        let push = 0;
-        if (Math.abs(dist) < RANGE) {
-          push = MAX_PUSH * (1 - Math.abs(dist) / RANGE);
+        <div class="categories">
+
+            <div class="category active">
+                All
+            </div>
+
+            <div class="category">
+                New
+            </div>
+
+            <div class="category">
+                Popular
+            </div>
+
+            <div class="category">
+                Digital
+            </div>
+
+        </div>
+
+
+        <!-- PRODUCTS -->
+
+        <div class="products">
+
+
+            <!-- PRODUCT 1 -->
+
+            <div class="product">
+
+                <div class="product-image">
+
+                    <!-- Replace this URL with your product image -->
+
+                    <img
+                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
+                        alt="Product 1"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+                        Product One
+                    </div>
+
+                    <div class="product-description">
+                        A short description of your product.
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            £19.99
+                        </span>
+
+                        <button
+                            class="buy-button"
+                            onclick="buyProduct('Product One')"
+                        >
+                            Buy
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 2 -->
+
+            <div class="product">
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=80"
+                        alt="Product 2"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+                        Product Two
+                    </div>
+
+                    <div class="product-description">
+                        A short description of your product.
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            £24.99
+                        </span>
+
+                        <button
+                            class="buy-button"
+                            onclick="buyProduct('Product Two')"
+                        >
+                            Buy
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 3 -->
+
+            <div class="product">
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80"
+                        alt="Product 3"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+                        Product Three
+                    </div>
+
+                    <div class="product-description">
+                        A short description of your product.
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            £29.99
+                        </span>
+
+                        <button
+                            class="buy-button"
+                            onclick="buyProduct('Product Three')"
+                        >
+                            Buy
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PRODUCT 4 -->
+
+            <div class="product">
+
+                <div class="product-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80"
+                        alt="Product 4"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-name">
+                        Product Four
+                    </div>
+
+                    <div class="product-description">
+                        A short description of your product.
+                    </div>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            £14.99
+                        </span>
+
+                        <button
+                            class="buy-button"
+                            onclick="buyProduct('Product Four')"
+                        >
+                            Buy
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+
+    <section class="about" id="about">
+
+        <h2>Made Different.</h2>
+
+        <p>
+            We create and sell products we genuinely like.
+            Simple, useful and designed to stand out.
+            Thanks for supporting an independent store.
+        </p>
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer id="contact">
+
+        <div>
+            © 2026 YOUR STORE.
+        </div>
+
+        <div>
+            <a href="mailto:youremail@example.com">
+                youremail@example.com
+            </a>
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function buyProduct(productName) {
+
+            /*
+                Replace this with your checkout link.
+
+                Example:
+
+                window.location.href =
+                    "https://your-payment-link.com";
+            */
+
+            alert(
+                productName +
+                " selected! Add your checkout link in the code."
+            );
+
         }
-        const transform = push > 0.5 ? 'translateX(' + push.toFixed(1) + 'px)' : '';
-        const id = row.querySelector('.row-id');
-        const title = row.querySelector('.row-title');
-        if (id) id.style.transform = transform;
-        if (title) title.style.transform = transform;
-      });
-      ticking = false;
-    }
 
-    function onScroll() {
-      if (!ticking) {
-        window.requestAnimationFrame(update);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll, { passive: true });
-    update();
-  }
-
-  render();
-</script>
+    </script>
 
 </body>
 </html>
+```
