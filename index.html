@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>jveu network</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&amp;display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -602,52 +601,20 @@
     </style>
 </head>
 
-<body class="intro-lock">
+<body class="">
 
     <!-- ============ ENTRANCE INTRO ============ -->
 
-    <div id="intro">
-
-        <svg id="intro-noise" xmlns="http://www.w3.org/2000/svg">
-            <filter id="grain">
-                <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch"></feTurbulence>
-                <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0"></feColorMatrix>
-            </filter>
-            <rect width="100%" height="100%" filter="url(#grain)"></rect>
-        </svg>
-
-        <div id="intro-glow"></div>
-
-        <div id="intro-title">jveu network</div>
-
-        <div id="intro-cloud">
-            <div class="puff" style="left:6%;  bottom:0%;  width:34vw; height:26vw;"></div>
-            <div class="puff" style="left:20%; bottom:4%;  width:42vw; height:32vw;"></div>
-            <div class="puff" style="left:37%; bottom:10%; width:48vw; height:36vw;"></div>
-            <div class="puff" style="left:55%; bottom:7%;  width:46vw; height:34vw;"></div>
-            <div class="puff" style="left:72%; bottom:2%;  width:40vw; height:30vw;"></div>
-            <div class="puff" style="left:88%; bottom:0%;  width:32vw; height:24vw;"></div>
-            <div class="puff" style="left:30%; bottom:28%; width:20vw; height:16vw;"></div>
-            <div class="puff" style="left:46%; bottom:32%; width:18vw; height:14vw;"></div>
-            <div class="puff" style="left:60%; bottom:26%; width:22vw; height:17vw;"></div>
-        </div>
-
-        <div id="intro-hint">
-            <span class="hint-diamond">◇</span>
-            <span>Scroll</span>
-        </div>
-        <button id="intro-skip" onclick="skipIntro()">Skip intro</button>
-
-    </div>
+    
 
 
     <!-- ============ AUDIO ============ -->
 
     <audio id="click-sound" src="click.mp3" preload="auto"></audio>
 
-    <div id="color-bridge"></div>
+    <div id="color-bridge" style="opacity: 0.232;"></div>
 
-    <div id="site">
+    <div id="site" style="opacity: 1; filter: none;">
 
     <!-- ============ NAVIGATION ============ -->
 
@@ -660,11 +627,11 @@
             <a href="#contact" class="hide-mobile" onclick="playClick()">Contact</a>
             <button id="rain-toggle" onclick="toggleRain()">🌧 Rain</button>
             <button id="discord-btn" onclick="openDiscord()">
-                <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/></svg>
+                <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"></path></svg>
                 Discord
             </button>
-            <button id="edit-toggle" onclick="toggleEdit()">Edit Products</button>
-            <button id="export-btn" onclick="exportStore()">Save Changes</button>
+            
+            
         </div>
 
         <a href="#shop" class="cart" onclick="playClick()">
@@ -717,56 +684,34 @@
         <div class="products" id="products-grid">
 
             <div class="product">
-                <button class="remove-product" onclick="removeProduct(this)">×</button>
+                
                 <div class="product-info">
-                    <div class="product-name">Product One</div>
-                    <div class="product-description">A short description of your product.</div>
+                    <div class="product-name">Discord Boosting Services</div>
+                    <div class="product-description">Discord boosts for perks in your server. This comes with things like discord.gg/example Or custom name tags etc.&nbsp;</div>
                     <div class="product-bottom">
-                        <span class="price">£19.99</span>
+                        <span class="price">£14.99 - 34.99</span>
                         <button class="buy-button" onclick="buyProduct()">Buy</button>
                     </div>
                 </div>
             </div>
+
+            
+
+            
 
             <div class="product">
-                <button class="remove-product" onclick="removeProduct(this)">×</button>
+                
                 <div class="product-info">
-                    <div class="product-name">Product Two</div>
-                    <div class="product-description">A short description of your product.</div>
+                    <div class="product-name">GFX Making</div>
+                    <div class="product-description">GFX, Logo's, Website UI's ideas, And much more. Cost Varies on what you'd like to get.&nbsp;</div>
                     <div class="product-bottom">
-                        <span class="price">£24.99</span>
+                        <span class="price">£5.99 -&nbsp; 99.99</span>
                         <button class="buy-button" onclick="buyProduct()">Buy</button>
                     </div>
                 </div>
             </div>
 
-            <div class="product">
-                <button class="remove-product" onclick="removeProduct(this)">×</button>
-                <div class="product-info">
-                    <div class="product-name">Product Three</div>
-                    <div class="product-description">A short description of your product.</div>
-                    <div class="product-bottom">
-                        <span class="price">£29.99</span>
-                        <button class="buy-button" onclick="buyProduct()">Buy</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product">
-                <button class="remove-product" onclick="removeProduct(this)">×</button>
-                <div class="product-info">
-                    <div class="product-name">Product Four</div>
-                    <div class="product-description">A short description of your product.</div>
-                    <div class="product-bottom">
-                        <span class="price">£14.99</span>
-                        <button class="buy-button" onclick="buyProduct()">Buy</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="add-product-card" onclick="addProduct()">
-                + Add Product
-            </div>
+            
 
         </div>
 
@@ -1092,5 +1037,6 @@
 
     </script>
 
-</body>
-</html>
+
+
+</body></html>
