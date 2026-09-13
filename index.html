@@ -1,11 +1,14 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>YOUR STORE</title>
+    <title>jveu network</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -20,8 +23,20 @@
 
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background: #0a0a0a;
+            background: #060c14;
             color: #ffffff;
+            --panel: #0d1620;
+            --border: #16232f;
+            --border-strong: #223447;
+            --muted: #8fa4b5;
+            --muted-soft: #b9c8d4;
+            --accent: #3ea3de;
+            --accent-dark: #2c84b8;
+        }
+
+        body.intro-lock {
+            overflow: hidden;
+            height: 100vh;
         }
 
         a {
@@ -29,7 +44,134 @@
             text-decoration: none;
         }
 
-        /* NAVBAR */
+        /* ============ INTRO / ENTRANCE ============ */
+
+        #intro {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: linear-gradient(180deg, #bfe4f7 0%, #7fc3ec 32%, #3ea3de 68%, #1c86c9 100%);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #intro-glow {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            width: 900px;
+            height: 900px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0) 60%);
+            pointer-events: none;
+        }
+
+        #intro-title {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-weight: 500;
+            text-transform: lowercase;
+            font-size: clamp(30px, 5.4vw, 58px);
+            color: #ffffff;
+            letter-spacing: 3px;
+            transition: opacity 0.15s ease-out;
+            text-align: center;
+            white-space: nowrap;
+            text-shadow: 0 2px 24px rgba(10, 60, 90, 0.25);
+        }
+
+        #intro-cloud {
+            position: absolute;
+            bottom: -6%;
+            left: 50%;
+            width: 640px;
+            height: 380px;
+            transform: translateX(-50%) scale(1);
+            transform-origin: bottom center;
+            will-change: transform;
+            filter: drop-shadow(0 20px 40px rgba(10, 70, 110, 0.15));
+        }
+
+        #intro-cloud svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        #intro-door {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            transform-origin: center;
+            opacity: 0;
+            will-change: transform, opacity;
+            filter: drop-shadow(0 8px 24px rgba(5, 40, 65, 0.35));
+        }
+
+        #intro-door svg {
+            display: block;
+            width: 64px;
+            height: 128px;
+        }
+
+        #intro-hint {
+            position: absolute;
+            bottom: 46px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: 12px;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.8);
+            text-transform: uppercase;
+            transition: opacity 0.3s ease-out;
+        }
+
+        #intro-hint svg {
+            width: 14px;
+            height: 14px;
+            animation: chevronBob 1.8s ease-in-out infinite;
+        }
+
+        @keyframes chevronBob {
+            0%, 100% { transform: translateY(0); opacity: 0.5; }
+            50% { transform: translateY(6px); opacity: 1; }
+        }
+
+        #intro-skip {
+            position: absolute;
+            bottom: 30px;
+            right: 34px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 11px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            border: none;
+            padding: 6px 4px;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            background: transparent;
+            border-bottom: 1px solid rgba(255,255,255,0.35);
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        #intro-skip:hover {
+            color: #ffffff;
+            border-color: rgba(255,255,255,0.9);
+        }
+
+        /* ============ NAVBAR ============ */
 
         nav {
             height: 75px;
@@ -37,10 +179,10 @@
             align-items: center;
             justify-content: space-between;
             padding: 0 6%;
-            border-bottom: 1px solid #222;
+            border-bottom: 1px solid var(--border);
             position: sticky;
             top: 0;
-            background: rgba(10, 10, 10, 0.92);
+            background: rgba(6, 12, 20, 0.88);
             backdrop-filter: blur(10px);
             z-index: 100;
         }
@@ -49,13 +191,15 @@
             font-size: 22px;
             font-weight: 900;
             letter-spacing: -1px;
+            text-transform: lowercase;
         }
 
         .nav-links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             font-size: 14px;
-            color: #aaa;
+            color: var(--muted);
+            align-items: center;
         }
 
         .nav-links a:hover {
@@ -63,23 +207,66 @@
         }
 
         .cart {
-            border: 1px solid #333;
+            border: 1px solid var(--border-strong);
             padding: 10px 16px;
             border-radius: 50px;
             font-size: 13px;
         }
 
-        /* HERO */
+        #edit-toggle, #export-btn, #rain-toggle {
+            border: 1px solid var(--border-strong);
+            background: transparent;
+            color: var(--muted-soft);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        #edit-toggle.on {
+            background: #ffcc00;
+            color: black;
+            border-color: #ffcc00;
+            font-weight: bold;
+        }
+
+        #rain-toggle.on {
+            background: var(--accent);
+            color: black;
+            border-color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* edit tools are invisible to regular visitors until unlocked with the passcode */
+        #edit-toggle, #export-btn {
+            display: none;
+        }
+
+        body.unlocked #edit-toggle {
+            display: inline-block;
+        }
+
+        body.unlocked.editing #export-btn {
+            display: inline-block;
+        }
+
+        .logo {
+            cursor: default;
+            user-select: none;
+        }
+
+        /* ============ HERO ============ */
 
         .hero {
-            min-height: 70vh;
+            min-height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             padding: 80px 20px;
             background:
-                radial-gradient(circle at center, #222 0%, #0a0a0a 55%);
+                radial-gradient(circle at center, #10202e 0%, #060c14 60%);
         }
 
         .hero-content {
@@ -88,10 +275,10 @@
 
         .tag {
             display: inline-block;
-            border: 1px solid #333;
+            border: 1px solid var(--border-strong);
             padding: 8px 14px;
             border-radius: 50px;
-            color: #aaa;
+            color: var(--muted);
             font-size: 12px;
             margin-bottom: 25px;
             text-transform: uppercase;
@@ -101,34 +288,21 @@
         .hero h1 {
             font-size: clamp(50px, 10vw, 120px);
             line-height: 0.9;
-            letter-spacing: -7px;
+            letter-spacing: -5px;
             margin-bottom: 30px;
+            text-transform: lowercase;
+            font-weight: 900;
         }
 
         .hero p {
-            color: #999;
+            color: var(--muted);
             max-width: 500px;
             margin: auto;
             line-height: 1.7;
             font-size: 16px;
         }
 
-        .hero-button {
-            display: inline-block;
-            margin-top: 35px;
-            background: white;
-            color: black;
-            padding: 15px 25px;
-            border-radius: 50px;
-            font-weight: bold;
-            transition: 0.2s;
-        }
-
-        .hero-button:hover {
-            transform: translateY(-3px);
-        }
-
-        /* STORE */
+        /* ============ STORE ============ */
 
         .store {
             padding: 100px 6%;
@@ -149,10 +323,8 @@
         }
 
         .section-heading p {
-            color: #777;
+            color: var(--muted);
         }
-
-        /* CATEGORIES */
 
         .categories {
             display: flex;
@@ -163,20 +335,22 @@
 
         .category {
             padding: 10px 18px;
-            border: 1px solid #292929;
+            border: 1px solid var(--border-strong);
             border-radius: 50px;
-            color: #999;
+            color: var(--muted);
             font-size: 13px;
             cursor: pointer;
+            transition: 0.2s;
         }
 
         .category:hover,
         .category.active {
-            background: white;
-            color: black;
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
         }
 
-        /* PRODUCTS */
+        /* ============ PRODUCTS (no images) ============ */
 
         .products {
             display: grid;
@@ -185,58 +359,37 @@
         }
 
         .product {
-            background: #111;
-            border: 1px solid #222;
+            background: var(--panel);
+            border: 1px solid var(--border);
             overflow: hidden;
             transition: 0.25s;
+            position: relative;
         }
 
         .product:hover {
             transform: translateY(-5px);
-            border-color: #444;
-        }
-
-        .product-image {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            background: #181818;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: 0.3s;
-        }
-
-        .product:hover img {
-            transform: scale(1.04);
-        }
-
-        .placeholder {
-            color: #555;
-            font-size: 13px;
+            border-color: var(--accent);
         }
 
         .product-info {
-            padding: 18px;
+            padding: 22px 18px;
+        }
+
+        body.editing .product-info {
+            padding-top: 40px;
         }
 
         .product-name {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: bold;
             margin-bottom: 8px;
         }
 
         .product-description {
-            color: #777;
+            color: var(--muted);
             font-size: 13px;
             line-height: 1.5;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
 
         .product-bottom {
@@ -250,24 +403,78 @@
         }
 
         .buy-button {
-            background: white;
-            color: black;
+            background: var(--accent);
+            color: white;
             border: none;
             padding: 9px 14px;
             border-radius: 5px;
             cursor: pointer;
             font-weight: bold;
+            transition: 0.2s;
         }
 
         .buy-button:hover {
-            background: #ddd;
+            background: var(--accent-dark);
         }
 
-        /* ABOUT */
+        /* EDIT MODE */
+
+        body.editing .product-name,
+        body.editing .product-description,
+        body.editing .price {
+            outline: 1px dashed #ffcc00;
+            outline-offset: 3px;
+            cursor: text;
+            border-radius: 3px;
+        }
+
+        .remove-product {
+            display: none;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            border: none;
+            background: #ff4444;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 5;
+            line-height: 1;
+        }
+
+        body.editing .remove-product {
+            display: block;
+        }
+
+        .add-product-card {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed var(--border-strong);
+            color: var(--muted);
+            font-size: 14px;
+            cursor: pointer;
+            min-height: 140px;
+            background: transparent;
+        }
+
+        body.editing .add-product-card {
+            display: flex;
+        }
+
+        .add-product-card:hover {
+            border-color: #ffcc00;
+            color: #ffcc00;
+        }
+
+        /* ============ ABOUT ============ */
 
         .about {
-            border-top: 1px solid #222;
-            border-bottom: 1px solid #222;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
             padding: 100px 6%;
             text-align: center;
         }
@@ -281,28 +488,32 @@
         .about p {
             max-width: 600px;
             margin: auto;
-            color: #888;
+            color: var(--muted);
             line-height: 1.8;
         }
 
-        /* FOOTER */
+        /* ============ FOOTER ============ */
 
         footer {
             padding: 40px 6%;
             display: flex;
             justify-content: space-between;
-            color: #666;
+            color: var(--muted);
             font-size: 13px;
         }
 
-        /* MOBILE */
+        footer a:hover {
+            color: var(--accent);
+        }
+
+        /* ============ MOBILE ============ */
 
         @media (max-width: 900px) {
             .products {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .nav-links {
+            .nav-links a.hide-mobile {
                 display: none;
             }
         }
@@ -313,11 +524,11 @@
             }
 
             .hero {
-                min-height: 60vh;
+                min-height: 50vh;
             }
 
             .hero h1 {
-                letter-spacing: -4px;
+                letter-spacing: -3px;
             }
 
             .store {
@@ -353,26 +564,81 @@
     </style>
 </head>
 
-<body>
+<body class="intro-lock">
 
-    <!-- NAVIGATION -->
+    <!-- ============ ENTRANCE INTRO ============ -->
 
-    <nav>
-        <a href="#" class="logo">YOUR STORE.</a>
+    <div id="intro">
 
-        <div class="nav-links">
-            <a href="#shop">Shop</a>
-            <a href="#about">About</a>
-            <a href="#contact">Contact</a>
+        <div id="intro-glow"></div>
+
+        <div id="intro-title">jveu network</div>
+
+        <div id="intro-cloud">
+            <svg viewBox="0 0 640 380" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="cloudSoften" x="-50%" y="-50%" width="200%" height="200%">
+                        <feGaussianBlur stdDeviation="14"/>
+                    </filter>
+                    <linearGradient id="cloudShade" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#ffffff"/>
+                        <stop offset="100%" stop-color="#eaf6ff"/>
+                    </linearGradient>
+                </defs>
+                <g filter="url(#cloudSoften)" fill="url(#cloudShade)">
+                    <ellipse cx="180" cy="260" rx="140" ry="88"/>
+                    <ellipse cx="330" cy="205" rx="180" ry="118"/>
+                    <ellipse cx="470" cy="255" rx="140" ry="95"/>
+                    <ellipse cx="320" cy="300" rx="250" ry="80"/>
+                </g>
+            </svg>
         </div>
 
-        <a href="#shop" class="cart">
+        <div id="intro-door">
+            <svg viewBox="0 0 64 128" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="2" width="60" height="124" rx="6" fill="rgba(255,255,255,0.14)" stroke="#ffffff" stroke-width="1.4"/>
+                <rect x="9" y="9" width="46" height="110" rx="2" fill="rgba(255,255,255,0.06)" stroke="#ffffff" stroke-width="1"/>
+                <circle cx="47" cy="65" r="1.6" fill="#ffffff"/>
+            </svg>
+        </div>
+
+        <div id="intro-hint">
+            <span>Scroll to enter</span>
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M4 8L12 16L20 8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color:#fff"/>
+            </svg>
+        </div>
+        <button id="intro-skip" onclick="skipIntro()">Skip intro</button>
+
+    </div>
+
+
+    <!-- ============ AUDIO ============ -->
+
+    <audio id="click-sound" src="click.mp3" preload="auto"></audio>
+
+
+    <!-- ============ NAVIGATION ============ -->
+
+    <nav>
+        <a href="#" class="logo" onclick="handleLogoClick(event)">jveu network</a>
+
+        <div class="nav-links">
+            <a href="#shop" class="hide-mobile" onclick="playClick()">Shop</a>
+            <a href="#about" class="hide-mobile" onclick="playClick()">About</a>
+            <a href="#contact" class="hide-mobile" onclick="playClick()">Contact</a>
+            <button id="rain-toggle" onclick="toggleRain()">🌧 Rain</button>
+            <button id="edit-toggle" onclick="toggleEdit()">Edit Products</button>
+            <button id="export-btn" onclick="exportStore()">Save Changes</button>
+        </div>
+
+        <a href="#shop" class="cart" onclick="playClick()">
             Shop →
         </a>
     </nav>
 
 
-    <!-- HERO -->
+    <!-- ============ HERO ============ -->
 
     <section class="hero">
 
@@ -381,8 +647,8 @@
             <div class="tag">Independent Store</div>
 
             <h1>
-                YOUR<br>
-                STORE.
+                jveu<br>
+                network
             </h1>
 
             <p>
@@ -390,228 +656,81 @@
                 Everything you need, all in one place.
             </p>
 
-            <a href="#shop" class="hero-button">
-                Browse Products →
-            </a>
-
         </div>
 
     </section>
 
 
-    <!-- SHOP -->
+    <!-- ============ SHOP ============ -->
 
     <section class="store" id="shop">
 
         <div class="section-heading">
-
             <div>
                 <h2>Shop</h2>
                 <p>Browse our latest products.</p>
             </div>
-
         </div>
-
-
-        <!-- CATEGORIES -->
 
         <div class="categories">
-
-            <div class="category active">
-                All
-            </div>
-
-            <div class="category">
-                New
-            </div>
-
-            <div class="category">
-                Popular
-            </div>
-
-            <div class="category">
-                Digital
-            </div>
-
+            <div class="category active" onclick="playClick()">All</div>
+            <div class="category" onclick="playClick()">New</div>
+            <div class="category" onclick="playClick()">Popular</div>
+            <div class="category" onclick="playClick()">Digital</div>
         </div>
 
-
-        <!-- PRODUCTS -->
-
-        <div class="products">
-
-
-            <!-- PRODUCT 1 -->
+        <div class="products" id="products-grid">
 
             <div class="product">
-
-                <div class="product-image">
-
-                    <!-- Replace this URL with your product image -->
-
-                    <img
-                        src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=800&q=80"
-                        alt="Product 1"
-                    >
-
-                </div>
-
+                <button class="remove-product" onclick="removeProduct(this)">×</button>
                 <div class="product-info">
-
-                    <div class="product-name">
-                        Product One
-                    </div>
-
-                    <div class="product-description">
-                        A short description of your product.
-                    </div>
-
+                    <div class="product-name">Product One</div>
+                    <div class="product-description">A short description of your product.</div>
                     <div class="product-bottom">
-
-                        <span class="price">
-                            £19.99
-                        </span>
-
-                        <button
-                            class="buy-button"
-                            onclick="buyProduct('Product One')"
-                        >
-                            Buy
-                        </button>
-
+                        <span class="price">£19.99</span>
+                        <button class="buy-button" onclick="buyProduct()">Buy</button>
                     </div>
-
                 </div>
-
             </div>
 
-
-            <!-- PRODUCT 2 -->
-
             <div class="product">
-
-                <div class="product-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=800&q=80"
-                        alt="Product 2"
-                    >
-
-                </div>
-
+                <button class="remove-product" onclick="removeProduct(this)">×</button>
                 <div class="product-info">
-
-                    <div class="product-name">
-                        Product Two
-                    </div>
-
-                    <div class="product-description">
-                        A short description of your product.
-                    </div>
-
+                    <div class="product-name">Product Two</div>
+                    <div class="product-description">A short description of your product.</div>
                     <div class="product-bottom">
-
-                        <span class="price">
-                            £24.99
-                        </span>
-
-                        <button
-                            class="buy-button"
-                            onclick="buyProduct('Product Two')"
-                        >
-                            Buy
-                        </button>
-
+                        <span class="price">£24.99</span>
+                        <button class="buy-button" onclick="buyProduct()">Buy</button>
                     </div>
-
                 </div>
-
             </div>
 
-
-            <!-- PRODUCT 3 -->
-
             <div class="product">
-
-                <div class="product-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1503602642458-232111445657?auto=format&fit=crop&w=800&q=80"
-                        alt="Product 3"
-                    >
-
-                </div>
-
+                <button class="remove-product" onclick="removeProduct(this)">×</button>
                 <div class="product-info">
-
-                    <div class="product-name">
-                        Product Three
-                    </div>
-
-                    <div class="product-description">
-                        A short description of your product.
-                    </div>
-
+                    <div class="product-name">Product Three</div>
+                    <div class="product-description">A short description of your product.</div>
                     <div class="product-bottom">
-
-                        <span class="price">
-                            £29.99
-                        </span>
-
-                        <button
-                            class="buy-button"
-                            onclick="buyProduct('Product Three')"
-                        >
-                            Buy
-                        </button>
-
+                        <span class="price">£29.99</span>
+                        <button class="buy-button" onclick="buyProduct()">Buy</button>
                     </div>
-
                 </div>
-
             </div>
 
-
-            <!-- PRODUCT 4 -->
-
             <div class="product">
-
-                <div class="product-image">
-
-                    <img
-                        src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=800&q=80"
-                        alt="Product 4"
-                    >
-
-                </div>
-
+                <button class="remove-product" onclick="removeProduct(this)">×</button>
                 <div class="product-info">
-
-                    <div class="product-name">
-                        Product Four
-                    </div>
-
-                    <div class="product-description">
-                        A short description of your product.
-                    </div>
-
+                    <div class="product-name">Product Four</div>
+                    <div class="product-description">A short description of your product.</div>
                     <div class="product-bottom">
-
-                        <span class="price">
-                            £14.99
-                        </span>
-
-                        <button
-                            class="buy-button"
-                            onclick="buyProduct('Product Four')"
-                        >
-                            Buy
-                        </button>
-
+                        <span class="price">£14.99</span>
+                        <button class="buy-button" onclick="buyProduct()">Buy</button>
                     </div>
-
                 </div>
+            </div>
 
+            <div class="add-product-card" onclick="addProduct()">
+                + Add Product
             </div>
 
         </div>
@@ -619,62 +738,295 @@
     </section>
 
 
-    <!-- ABOUT -->
+    <!-- ============ ABOUT ============ -->
 
     <section class="about" id="about">
-
         <h2>Made Different.</h2>
-
         <p>
             We create and sell products we genuinely like.
             Simple, useful and designed to stand out.
             Thanks for supporting an independent store.
         </p>
-
     </section>
 
 
-    <!-- FOOTER -->
+    <!-- ============ FOOTER ============ -->
 
     <footer id="contact">
-
+        <div>© 2026 jveu network.</div>
         <div>
-            © 2026 YOUR STORE.
-        </div>
-
-        <div>
-            <a href="mailto:youremail@example.com">
-                youremail@example.com
+            <a href="mailto:jveuofficialmail@gmail.com">
+                jveuofficialmail@gmail.com
             </a>
         </div>
-
     </footer>
 
 
-    <!-- JAVASCRIPT -->
+    <!-- ============ JAVASCRIPT ============ -->
 
     <script>
 
-        function buyProduct(productName) {
+        var DISCORD_LINK = "https://discord.com/channels/1525195973058629672/1525199595813208074";
 
-            /*
-                Replace this with your checkout link.
+        /* ---------- owner-only edit unlock ---------- */
+        /* Change this to whatever passcode you want to use to unlock editing. */
+        var ADMIN_PASSCODE = "jveu2026";
 
-                Example:
+        var logoClicks = [];
+        function handleLogoClick(e) {
+            e.preventDefault();
+            var now = Date.now();
+            logoClicks.push(now);
+            logoClicks = logoClicks.filter(function(t) { return now - t < 3000; });
 
-                window.location.href =
-                    "https://your-payment-link.com";
-            */
-
-            alert(
-                productName +
-                " selected! Add your checkout link in the code."
-            );
-
+            if (logoClicks.length >= 5) {
+                logoClicks = [];
+                unlockEdit();
+            }
         }
+
+        function unlockEdit() {
+            if (document.body.classList.contains('unlocked')) return;
+            var entered = prompt('Enter admin passcode to edit this site:');
+            if (entered === null) return;
+            if (entered === ADMIN_PASSCODE) {
+                document.body.classList.add('unlocked');
+                playClick();
+                toggleEdit();
+            } else {
+                alert('Incorrect passcode.');
+            }
+        }
+
+        /* ---------- click sound ---------- */
+        function playClick() {
+            var s = document.getElementById('click-sound');
+            try {
+                s.currentTime = 0;
+                s.play();
+            } catch (e) {}
+        }
+
+        function buyProduct() {
+            playClick();
+            window.open(DISCORD_LINK, "_blank");
+        }
+
+        /* ---------- rain ambience (synthesized, since no rain audio file was provided) ---------- */
+        var rainCtx = null, rainGain = null, rainOn = false;
+        var RAIN_LEVEL = 0.055; // lighter, airier level
+
+        function toggleRain() {
+            playClick();
+            var btn = document.getElementById('rain-toggle');
+
+            if (!rainCtx) {
+                rainCtx = new (window.AudioContext || window.webkitAudioContext)();
+                var bufferSize = 2 * rainCtx.sampleRate;
+                var noiseBuffer = rainCtx.createBuffer(1, bufferSize, rainCtx.sampleRate);
+                var data = noiseBuffer.getChannelData(0);
+                for (var i = 0; i < bufferSize; i++) { data[i] = Math.random() * 2 - 1; }
+
+                var whiteNoise = rainCtx.createBufferSource();
+                whiteNoise.buffer = noiseBuffer;
+                whiteNoise.loop = true;
+
+                // cut the low rumble so it reads as a light, airy drizzle rather than heavy rain
+                var highpass = rainCtx.createBiquadFilter();
+                highpass.type = 'highpass';
+                highpass.frequency.value = 900;
+
+                var lowpass = rainCtx.createBiquadFilter();
+                lowpass.type = 'lowpass';
+                lowpass.frequency.value = 5200;
+
+                rainGain = rainCtx.createGain();
+                rainGain.gain.value = 0;
+
+                // gentle slow shimmer so the level breathes instead of sitting as flat static
+                var shimmer = rainCtx.createGain();
+                shimmer.gain.value = 1;
+                var lfo = rainCtx.createOscillator();
+                lfo.frequency.value = 0.18;
+                var lfoDepth = rainCtx.createGain();
+                lfoDepth.gain.value = 0.15;
+                lfo.connect(lfoDepth).connect(shimmer.gain);
+                lfo.start(0);
+
+                whiteNoise.connect(highpass).connect(lowpass).connect(shimmer).connect(rainGain).connect(rainCtx.destination);
+                whiteNoise.start(0);
+            }
+
+            rainOn = !rainOn;
+            rainGain.gain.linearRampToValueAtTime(rainOn ? RAIN_LEVEL : 0, rainCtx.currentTime + 0.8);
+            btn.classList.toggle('on', rainOn);
+            btn.textContent = rainOn ? '🌧 Rain: On' : '🌧 Rain';
+        }
+
+        /* ---------- edit mode ---------- */
+        function toggleEdit() {
+            playClick();
+            var body = document.body;
+            var btn = document.getElementById('edit-toggle');
+            var editing = body.classList.toggle('editing');
+            btn.classList.toggle('on', editing);
+            btn.textContent = editing ? 'Done Editing' : 'Edit Products';
+
+            document.querySelectorAll('.product-name, .product-description, .price').forEach(function(el) {
+                el.setAttribute('contenteditable', editing ? 'true' : 'false');
+            });
+        }
+
+        function removeProduct(btn) {
+            playClick();
+            var card = btn.closest('.product');
+            if (confirm('Remove this product?')) {
+                card.remove();
+            }
+        }
+
+        function addProduct() {
+            playClick();
+            var grid = document.getElementById('products-grid');
+            var addCard = document.querySelector('.add-product-card');
+
+            var card = document.createElement('div');
+            card.className = 'product';
+            card.innerHTML =
+                '<button class="remove-product" onclick="removeProduct(this)">×</button>' +
+                '<div class="product-info">' +
+                    '<div class="product-name" contenteditable="true">New Product</div>' +
+                    '<div class="product-description" contenteditable="true">A short description of your product.</div>' +
+                    '<div class="product-bottom">' +
+                        '<span class="price" contenteditable="true">£0.00</span>' +
+                        '<button class="buy-button" onclick="buyProduct()">Buy</button>' +
+                    '</div>' +
+                '</div>';
+
+            grid.insertBefore(card, addCard);
+        }
+
+        function exportStore() {
+            playClick();
+            var clone = document.documentElement.cloneNode(true);
+
+            clone.querySelectorAll('.remove-product, .add-product-card, #edit-toggle, #export-btn, #intro').forEach(function(el) {
+                el.remove();
+            });
+            clone.querySelectorAll('[contenteditable]').forEach(function(el) {
+                el.removeAttribute('contenteditable');
+            });
+            clone.querySelector('body').classList.remove('editing');
+            clone.querySelector('body').classList.remove('intro-lock');
+            clone.querySelector('body').classList.remove('unlocked');
+
+            var html = '<!DOCTYPE html>\n' + clone.outerHTML;
+            var blob = new Blob([html], { type: 'text/html' });
+            var a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'store.html';
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+        }
+
+        /* ---------- entrance intro (sky -> cloud -> door), smoothed with requestAnimationFrame ---------- */
+        var introTarget = 0;     // where the input wants to be
+        var introProgress = 0;   // the smoothed, rendered value
+        var introActive = true;
+        var introEl = document.getElementById('intro');
+        var glowEl = document.getElementById('intro-glow');
+        var cloudEl = document.getElementById('intro-cloud');
+        var doorEl = document.getElementById('intro-door');
+        var titleEl = document.getElementById('intro-title');
+        var hintEl = document.getElementById('intro-hint');
+
+        function easeOutCubic(x) {
+            return 1 - Math.pow(1 - x, 3);
+        }
+
+        function renderIntro() {
+            var p = introProgress;
+            var pe = easeOutCubic(Math.min(1, p));
+
+            var cloudScale = 1 + Math.min(pe, 0.5) / 0.5 * 3.1;
+            cloudEl.style.transform = 'translateX(-50%) scale(' + cloudScale.toFixed(3) + ')';
+
+            glowEl.style.opacity = Math.max(0, 1 - pe / 0.5);
+            titleEl.style.opacity = Math.max(0, 1 - p / 0.28).toFixed(3);
+            hintEl.style.opacity = p < 0.04 ? 1 : Math.max(0, 1 - p / 0.14).toFixed(3);
+
+            var doorOpacity = Math.max(0, Math.min(1, (pe - 0.46) / 0.18));
+            doorEl.style.opacity = doorOpacity.toFixed(3);
+            var doorScale = 1 + Math.max(0, pe - 0.58) / 0.42 * 26;
+            doorEl.style.transform = 'translate(-50%, -50%) scale(' + doorScale.toFixed(3) + ')';
+
+            var introOpacity = p < 0.85 ? 1 : Math.max(0, 1 - (p - 0.85) / 0.15);
+            introEl.style.opacity = introOpacity.toFixed(3);
+        }
+
+        function introLoop() {
+            introProgress += (introTarget - introProgress) * 0.09;
+            if (Math.abs(introTarget - introProgress) < 0.0008) {
+                introProgress = introTarget;
+            }
+            renderIntro();
+
+            if (introTarget >= 1 && introProgress >= 0.999) {
+                finishIntro();
+                return;
+            }
+            if (introActive) {
+                requestAnimationFrame(introLoop);
+            }
+        }
+
+        function finishIntro() {
+            if (!introActive) return;
+            introActive = false;
+            introEl.style.pointerEvents = 'none';
+            setTimeout(function() {
+                introEl.style.display = 'none';
+            }, 280);
+            document.body.classList.remove('intro-lock');
+            window.removeEventListener('wheel', onIntroWheel);
+            window.removeEventListener('touchmove', onIntroTouchMove);
+        }
+
+        function skipIntro() {
+            introTarget = 1;
+        }
+
+        function onIntroWheel(e) {
+            if (!introActive) return;
+            e.preventDefault();
+            introTarget = Math.min(1, Math.max(0, introTarget + e.deltaY * 0.0011));
+        }
+
+        var introTouchStartY = null;
+        function onIntroTouchStart(e) {
+            introTouchStartY = e.touches[0].clientY;
+        }
+        function onIntroTouchMove(e) {
+            if (!introActive || introTouchStartY === null) return;
+            e.preventDefault();
+            var deltaY = introTouchStartY - e.touches[0].clientY;
+            introTouchStartY = e.touches[0].clientY;
+            introTarget = Math.min(1, Math.max(0, introTarget + deltaY * 0.0026));
+        }
+
+        window.addEventListener('wheel', onIntroWheel, { passive: false });
+        window.addEventListener('touchstart', onIntroTouchStart, { passive: true });
+        window.addEventListener('touchmove', onIntroTouchMove, { passive: false });
+
+        introEl.addEventListener('click', function() {
+            if (!introActive) return;
+            introTarget = Math.min(1, introTarget + 0.22);
+        });
+
+        requestAnimationFrame(introLoop);
 
     </script>
 
 </body>
 </html>
-```
